@@ -7,18 +7,22 @@ import { NextIntlClientProvider } from 'next-intl';
 import { ClerkProvider } from '@clerk/nextjs';
 import '@/styles/globals.css';
 
+type LayoutProps = {
+  children: React.ReactNode;
+  params: {
+    locale: string;
+  };
+};
+
 export default async function RootLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
-  const messages = await getMessages(String(params.locale));
+}: LayoutProps) {
+  const messages = await getMessages(params.locale);
 
   return (
     <ClerkProvider>
-      <NextIntlClientProvider messages={messages} locale={String(params.locale)}>
+      <NextIntlClientProvider messages={messages} locale={params.locale}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
