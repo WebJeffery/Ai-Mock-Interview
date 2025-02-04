@@ -2,13 +2,13 @@
 
 AI Mock Interview 是一个智能模拟面试系统，旨在帮助求职者提升面试技能。项目基于 Next.js 15+ 构建，具有以下特点：
 
-- 🤖 智能对话：基于 LangChain 和 RAG 架构，提供自然流畅的面试体验
-- 💡 场景丰富：覆盖技术面试、HR面试等多种真实面试场景
-- 📝 即时反馈：面试后提供详细的表现分析和改进建议
-- 📊 进度追踪：记录面试历史，帮助用户持续提升
-- ⚡️ 高性能：采用 Next.js 15+ 和 Turbopack，确保快速响应
-- 🎯 个性化：根据用户背景和目标职位定制面试内容
-- 🌐 国际化：支持中英文切换，满足不同用户需求
+- 🤖 智能对话：基于 OpenAI GPT-4 和 Vercel AI SDK，提供自然流畅的面试体验
+- 💡 场景丰富：支持前端、后端、全栈等多个技术岗位的面试模拟
+- 📝 即时反馈：实时生成面试反馈和评分，帮助快速改进
+- 📊 数据分析：可视化展示面试历史和进步轨迹
+- ⚡️ 高性能：采用 Next.js 15+ App Router，支持流式响应
+- 🎯 个性化：可自定义面试难度和专业方向
+- 🌐 多语言：支持中英文面试和界面切换
 
 ## 技术栈
 
@@ -16,41 +16,48 @@ AI Mock Interview 是一个智能模拟面试系统，旨在帮助求职者提�
 - **框架**: Next.js 15+ (App Router)
 - **包管理**: pnpm
 - **构建工具**: Turbopack (构建速度提升 10x+)
+- **AI 集成**: 
+  - OpenAI GPT-4
+  - Vercel AI SDK
+  - AI Streaming
 - **类型系统**: TypeScript 5.x + Zod
-- **组件库**: Shadcn UI + Radix Primitives
-- **状态管理**: 
-  - 客户端状态: Zustand
-  - 服务端状态: TanStack Query
+- **组件库**: 
+  - Shadcn UI
+  - Radix UI Primitives
+  - Lucide Icons
+- **状态管理**: Zustand
 - **样式方案**: 
-  - Tailwind CSS 4.0
-  - tailwind-variants
-  - CSS Modules (用于复杂样式)
+  - Tailwind CSS
+  - CSS Variables
+  - CSS Modules
 
 ### 数据层
 - **ORM**: Prisma
 - **数据库**: Supabase
 - **API 集成**: RESTful + tRPC
+- **认证**: NextAuth.js v5
+- **API**: Next.js Route Handlers
 
-### AI 与增强功能
-- **AI 集成**: 
-  - Vercel AI SDK
-  - LangChain (RAG 架构)
-  - OpenAI API
+### 资源
 - **动画**: Framer Motion 11
 - **图标**: Lucide React
 
 ### 工程化工具
 - **代码规范**: ESLint + @next/eslint-plugin
 - **代码格式化**: Prettier 3 + prettier-plugin-tailwindcss
+- **代码质量**:
+  - ESLint
+  - Prettier
+  - TypeScript
 - **Git 工作流**: 
   - Commitizen (提交规范)
   - Husky (Git Hooks)
   - Lint-staged
-- **部署平台**: Vercel
-- **监控系统**: 
-  - Sentry (错误监控)
+- **部署**: 
+  - Vercel
   - Vercel Analytics
   - Speed Insights
+
 ## 项目结构
 
 ```

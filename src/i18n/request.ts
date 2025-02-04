@@ -1,14 +1,39 @@
+import { createSharedPathnamesNavigation } from 'next-intl/navigation';
+import { headers } from 'next/headers';
 import { getRequestConfig } from 'next-intl/server';
-import { locales } from '@/config/i18n';
+// import { notFound } from 'next/navigation';
 
-export default getRequestConfig(async ({ locale }) => {
-  if (!locales.includes(locale as any)) {
+export const locales = ['en', 'zh'] as const;
+export type Locale = (typeof locales)[number];
+export const defaultLocale = 'zh';
+
+export async function getMessages(locale: string) {
+  try {
+    return (await import(`@/messages/${locale}.json`)).default;
+  } catch (error) {
+    return (await import(`@/messages/${defaultLocale}.json`)).default;
+  }
+}
+
+export default getRequestConfig(async () => {
+  const headersList = await headers();
+  const locale = headersList.get('X-NEXT-INTL-LOCALE') ?? defaultLocale;
+
+  try {
+    const messages = await getMessages(locale);
     return {
-      messages: (await import(`@/messages/zh.json`)).default
+      locale,
+      messages,
+      timeZone: 'Asia/Shanghai'
+    };
+  } catch (error) {
+    return {
+      locale: defaultLocale,
+      messages: await getMessages(defaultLocale),
+      timeZone: 'Asia/Shanghai'
     };
   }
+});
 
-  return {
-    messages: (await import(`@/messages/${locale}.json`)).default
-  };
-}); 
+export const { Link, redirect, usePathname, useRouter } =
+  createSharedPathnamesNavigation({ locales });

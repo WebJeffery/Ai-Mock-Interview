@@ -4,6 +4,6 @@ export const siteConfig = {
   url: "https://ai-mock-interview.vercel.app",
   ogImage: "https://ai-mock-interview.vercel.app/og.jpg",
   links: {
-    github: "https://github.com/yourusername/ai-mock-interview",
+    github: "https://github.com/ai-forum/Ai-Mock-Interview",
   },
 } 

@@ -21,7 +21,10 @@ export function LanguageSwitcher() {
   const pathname = usePathname();
 
   const handleChange = (value: string) => {
-    router.replace(`/${value}${pathname}`);
+    // 移除当前语言前缀
+    const pathWithoutLocale = pathname.replace(`/${locale}`, '');
+    // 添加新语言前缀
+    router.replace(`/${value}${pathWithoutLocale}`);
   };
 
   return (
