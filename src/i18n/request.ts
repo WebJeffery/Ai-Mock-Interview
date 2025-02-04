@@ -5,9 +5,9 @@ import { getRequestConfig } from 'next-intl/server';
 
 export const locales = ['en', 'zh'] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale = 'zh';
+export const defaultLocale: Locale = 'zh';
 
-export async function getMessages(locale: string) {
+export async function getMessages(locale: Locale) {
   try {
     return (await import(`@/messages/${locale}.json`)).default;
   } catch (error) {
@@ -17,7 +17,7 @@ export async function getMessages(locale: string) {
 
 export default getRequestConfig(async () => {
   const headersList = await headers();
-  const locale = headersList.get('X-NEXT-INTL-LOCALE') ?? defaultLocale;
+  const locale = (headersList.get('X-NEXT-INTL-LOCALE') ?? defaultLocale) as Locale;
 
   try {
     const messages = await getMessages(locale);

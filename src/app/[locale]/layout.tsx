@@ -5,29 +5,28 @@ import { ThemeProvider } from '@/components/providers/theme-provider';
 import { getMessages } from '@/i18n/request';
 import { NextIntlClientProvider } from 'next-intl';
 import { ClerkProvider } from '@clerk/nextjs';
+import { Locale } from '@/i18n/request';
 import '@/styles/globals.css';
 
-type LayoutProps = {
+type Props = {
   children: React.ReactNode;
   params: {
-    locale: string;
+    locale: Locale;
   };
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: LayoutProps) {
-  const messages = await getMessages(params.locale);
+export default async function RootLayout({ children, params }: Props) {
+  const { locale } = await Promise.resolve(params);
+  const messages = await getMessages(locale);
 
   return (
     <ClerkProvider>
-      <NextIntlClientProvider messages={messages} locale={params.locale}>
+      <NextIntlClientProvider locale={locale} messages={messages}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
-        disableTransitionOnChange
+          disableTransitionOnChange
         >
           {children}
           <Toaster />
@@ -37,4 +36,8 @@ export default async function RootLayout({
       <SpeedInsights />
     </ClerkProvider>
   );
+}
+
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'zh' }];
 } 
