@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
@@ -7,8 +6,6 @@ import { getMessages } from '@/i18n/request';
 import { NextIntlClientProvider } from 'next-intl';
 import { ClerkProvider } from '@clerk/nextjs';
 import '@/styles/globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default async function RootLayout({
   children,

@@ -13,6 +13,11 @@ declare module 'next-themes' {
     disableTransitionOnChange?: boolean
     children?: React.ReactNode
   }
+  export function useTheme(): {
+    theme: string
+    setTheme: (theme: string) => void
+  }
+  export function ThemeProvider(props: ThemeProviderProps): JSX.Element
 }
 
 declare module '@radix-ui/react-dialog'

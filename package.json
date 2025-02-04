@@ -6,7 +6,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "format": "prettier --write .",
     "prepare": "husky install",
     "db:push": "prisma db push",
@@ -15,7 +15,9 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:deploy": "prisma migrate deploy"
+    "prisma:deploy": "prisma migrate deploy",
+    "check-types": "tsc --noEmit",
+    "check-all": "npm run lint && npm run format && npm run check-types"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.11.0",
@@ -44,7 +46,7 @@
     "next": "^15.0.0",
     "next-auth": "^5.0.0-beta.13",
     "next-intl": "^3.9.1",
-    "next-themes": "^0.2.1",
+    "next-themes": "^0.4.4",
     "openai": "^4.28.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
