@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "AI 模拟面试",
+    "description": "智能模拟面试系统"
+  },
+  "nav": {
+    "home": "首页",
+    "dashboard": "仪表盘",
+    "interview": "面试",
+    "settings": "设置"
+  },
+  "auth": {
+    "signIn": "登录",
+    "signUp": "注册",
+    "signOut": "退出",
+    "email": "邮箱",
+    "password": "密码"
+  },
+  "interview": {
+    "start": "开始面试",
+    "history": "面试历史",
+    "feedback": "面试反馈",
+    "settings": {
+      "title": "面试设置",
+      "position": "目标职位",
+      "level": "面试难度",
+      "duration": "预计时长"
+    }
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "retry": "重试",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除"
+  }
+} 

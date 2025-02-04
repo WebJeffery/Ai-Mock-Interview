@@ -1,0 +1,39 @@
+{
+  "app": {
+    "name": "AI Mock Interview",
+    "description": "AI-powered Mock Interview System"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "interview": "Interview",
+    "settings": "Settings"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password"
+  },
+  "interview": {
+    "start": "Start Interview",
+    "history": "Interview History",
+    "feedback": "Feedback",
+    "settings": {
+      "title": "Interview Settings",
+      "position": "Target Position",
+      "level": "Difficulty Level",
+      "duration": "Expected Duration"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete"
+  }
+} 
