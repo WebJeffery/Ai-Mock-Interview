@@ -5,8 +5,8 @@ import { LanguageSwitcher } from '@/components/language-switcher';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
-
+// import Image from 'next/image';
+import { BRAND_NAME } from '@/config/branding';
 export default function Header() {
   const path = usePathname();
   const locale = useLocale();
@@ -17,7 +17,8 @@ export default function Header() {
         {/* 左侧 Logo */}
         <div className="flex-none">
           <Link href={`/${locale}`}>
-            <Image src={'/logo.svg'} width={160} height={100} alt='logo' />
+            <span className="text-xl font-bold hover:text-primary transition-colors">{BRAND_NAME}</span>
+            {/* <Image src={'/logo.svg'} width={160} height={100} alt='logo' /> */}
           </Link>
         </div>
 
