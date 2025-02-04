@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
@@ -8,36 +10,51 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Locale } from '@/i18n/request';
 import '@/styles/globals.css';
 
-type Props = {
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'AI Mock Interview',
+  description: '智能模拟面试系统',
+}
+
+interface LayoutProps {
   children: React.ReactNode;
   params: {
     locale: Locale;
   };
-};
+}
 
-export default async function RootLayout({ children, params }: Props) {
+export default async function RootLayout(props: LayoutProps) {
+  const { children, params } = props;
   const { locale } = await Promise.resolve(params);
   const messages = await getMessages(locale);
 
   return (
-    <ClerkProvider>
-      <NextIntlClientProvider locale={locale} messages={messages}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
-      </NextIntlClientProvider>
-      <Analytics />
-      <SpeedInsights />
-    </ClerkProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body className={inter.className}>
+        <ClerkProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </NextIntlClientProvider>
+          <Analytics />
+          <SpeedInsights />
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'zh' }];
+  return [
+    { locale: 'en' as const },
+    { locale: 'zh' as const }
+  ];
 } 
