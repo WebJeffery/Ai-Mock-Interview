@@ -161,6 +161,20 @@ pnpm dev
 
 访问 [http://localhost:3000](http://localhost:3000) 查看应用。
 
+## 部署
+
+### Vercel 部署
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fai-forum%2FAi-Mock-Interview&env=OPENAI_API_KEY,DATABASE_URL,NEXT_PUBLIC_DEFAULT_LOCALE&envDescription=%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E&envLink=https%3A%2F%2Fgithub.com%2Fai-forum%2FAi-Mock-Interview%2Fblob%2Fmain%2F.env.example&project-name=ai-mock-interview&repository-name=ai-mock-interview&demo-title=AI%20Mock%20Interview&demo-description=AI%E6%A8%A1%E6%8B%9F%E9%9D%A2%E8%AF%95%E7%B3%BB%E7%BB%9F&demo-url=https%3A%2F%2Fai-mock-interview.vercel.app&demo-image=https%3A%2F%2Fai-mock-interview.vercel.app%2Fog.png)
+
+需要配置的环境变量：
+
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Clerk 公钥
+- `CLERK_SECRET_KEY`: Clerk 密钥
+- `DATABASE_URL`: PostgreSQL 数据库 URL
+- `OPENAI_API_KEY`: OpenAI API 密钥
+
+
 
 ## 贡献
 
