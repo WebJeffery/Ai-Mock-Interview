@@ -17,16 +17,13 @@ export const metadata: Metadata = {
   description: '智能模拟面试系统',
 }
 
-interface LayoutProps {
+export default async function RootLayout({
+  children,
+  params: { locale },
+}: {
   children: React.ReactNode;
-  params: {
-    locale: Locale;
-  };
-}
-
-export default async function RootLayout(props: LayoutProps) {
-  const { children, params } = props;
-  const { locale } = await Promise.resolve(params);
+  params: { locale: Locale };
+}) {
   const messages = await getMessages(locale);
 
   return (
@@ -51,10 +48,3 @@ export default async function RootLayout(props: LayoutProps) {
     </html>
   );
 }
-
-export function generateStaticParams() {
-  return [
-    { locale: 'en' as const },
-    { locale: 'zh' as const }
-  ];
-} 
