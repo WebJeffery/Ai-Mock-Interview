@@ -4,10 +4,10 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import { getMessages } from '@/i18n/request';
+import { getMessages, Locale, locales } from '@/i18n/request';
 import { NextIntlClientProvider } from 'next-intl';
 import { ClerkProvider } from '@clerk/nextjs';
-import { Locale } from '@/i18n/request';
+import type { ReactNode } from 'react';
 import '@/styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,20 +17,31 @@ export const metadata: Metadata = {
   description: '智能模拟面试系统',
 }
 
+// 更新布局参数类型定义
+type RootLayoutProps = {
+  children: ReactNode
+  params: { 
+    locale: Locale // 使用具体的联合类型而不是string
+  }
+}
+
+// 定义支持的语言参数
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale: locale satisfies Locale }))
+}
+
+
 export default async function RootLayout({
   children,
-  params: { locale },
-}: {
-  children: React.ReactNode;
-  params: { locale: Locale };
-}) {
-  const messages = await getMessages(locale);
+  params,
+}: RootLayoutProps) {
+  const messages = await getMessages(params.locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={params.locale} suppressHydrationWarning>
       <body className={inter.className}>
         <ClerkProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextIntlClientProvider locale={params.locale} messages={messages}>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
